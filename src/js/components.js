@@ -1,7 +1,3 @@
-//aqui estamos criando todos os elementos no html
-// criar um espaço e uma linha a cada ul>li 
-//
-
 const container = document.createElement('div');
 const conteudo = document.createElement('div');
 const fonte = document.createElement('style');
@@ -10,7 +6,6 @@ const inputTexto = document.createElement('input');
 const botao = document.createElement('button');
 const lista = document.createElement('ul');
 
-//atribuindo o tipo do elemento, se ele tem q ter classe o valor dele "um texto"
 container.className = 'container';
 conteudo.className = 'conteudo';
 
@@ -29,21 +24,15 @@ lista.className = 'tarefas';
 //colocar os componentes no html 
 
 document.head.appendChild(fonte)
-document.body.appendChild(container); //div pai
-//div filho
-container.appendChild(conteudo);
-conteudo.appendChild(titulo);
+document.body.appendChild(container); 
 
+container.appendChild(conteudo);
+
+conteudo.appendChild(titulo);
 conteudo.appendChild(inputTexto);
 conteudo.appendChild(botao);
-
 conteudo.appendChild(lista);
 
-//Funcionalidade 
-
-//para descobrir qual tecla está sendo precinada tira o if e coloca console.log(e)
-
-//capturar a tecla enter para poder enviar a tarefa 
 inputTexto.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         if (!inputTexto.value) return;
@@ -55,8 +44,6 @@ function limparInput() {
     inputTexto.value = '';
     inputTexto.focus();
 }
-
-//function "nome da funcção"(onde eu quero aparecer ) {}
 
 function criaBotaoApagar(li) {
     const botaoApagar = document.createElement('button');
@@ -93,7 +80,6 @@ function criaTarefa(textInput) {
     salvarTarefas();
 }
 
-
 botao.addEventListener('click', function () {
     if (!inputTexto.value) return;
     criaTarefa(inputTexto.value);
@@ -107,7 +93,6 @@ document.addEventListener('click', function (e) {
         salvarTarefas();
     }
 });
-
 
 function salvarTarefas() {
     const liTarefas = lista.querySelectorAll('li');
@@ -127,6 +112,7 @@ function salvarTarefas() {
 
 function adicionaTarefasSalvas() {
     const lista = localStorage.getItem('lista');
+
     const listaDeTarefas = JSON.parse(lista);
 
     for (let lista of listaDeTarefas) {
@@ -137,4 +123,75 @@ function adicionaTarefasSalvas() {
 
 adicionaTarefasSalvas();
 
+//estilos
 
+fonte.innerHTML = `@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+.btn-tarefa:hover {
+    background-color: gray;
+    transition: .3s;
+    color: white;
+}
+.apagar:hover {
+    background-color: gray;
+    transition: .4s;
+    color: white;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+    color: white;
+    margin:30px ; 
+    border-radius: 10px;
+    padding: 10px;
+}
+
+li button {
+    border-radius: 10px;
+    margin: 10px auto 20px auto;
+    padding: 6px;
+    font-family: Open Sans, sans-serif;
+    borderRadius: 10px;
+    cursor: pointer;
+
+}`;
+
+body.style.backgroundColor = 'rgb(17, 86, 102)';
+
+container.style.backgroundColor = 'white';
+container.style.display = 'flex';
+container.style.flexDirection = 'column';
+container.style.maxWidth = '740px';
+container.style.padding = '30px'
+container.style.margin = '10% auto 0px auto'
+container.style.borderRadius = '10px'
+
+conteudo.style.display = 'flex'
+conteudo.style.alignSelf = 'center'
+conteudo.style.flexDirection = 'column'
+
+titulo.style.fontSize = '3em'
+titulo.style.textAlign = 'center'
+titulo.style.fontFamily = 'Open Sans, sans-serif'
+titulo.style.textTransform = 'Uppercase';
+
+inputTexto.style.margin = '0px auto 20px auto';
+inputTexto.style.width = '300px';
+inputTexto.style.padding = '10px';
+inputTexto.style.fontSize = '1.2em';
+inputTexto.style.borderRadius = '10px';
+
+botao.style.width = '200px';
+botao.style.margin = '0px auto 20px auto';
+botao.style.padding = '10px';
+botao.style.fontFamily = 'Open Sans, sans-serif';
+botao.style.borderRadius = '10px';
+botao.style.cursor = 'pointer';
+
+inputTitulo.style.margin = '0px auto 20px auto';
+inputTitulo.style.width = '300px';
+inputTitulo.style.padding = '10px';
+inputTitulo.style.fontSize = '1.2em';
+inputTitulo.style.borderRadius = '10px';
