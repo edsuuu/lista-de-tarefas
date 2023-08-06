@@ -9,14 +9,6 @@ const titulo = document.createElement('h1');
 const inputTexto = document.createElement('input');
 const botao = document.createElement('button');
 const lista = document.createElement('ul');
-const inputTitulo = document.createElement('input');
-
-inputTitulo.type = 'text';
-inputTitulo.className = 'input-titulo';
-inputTitulo.placeholder = 'Digite o título da lista';
-
-
-
 
 //atribuindo o tipo do elemento, se ele tem q ter classe o valor dele "um texto"
 container.className = 'container';
@@ -41,7 +33,7 @@ document.body.appendChild(container); //div pai
 //div filho
 container.appendChild(conteudo);
 conteudo.appendChild(titulo);
-conteudo.appendChild(inputTitulo);
+
 conteudo.appendChild(inputTexto);
 conteudo.appendChild(botao);
 
@@ -62,8 +54,6 @@ inputTexto.addEventListener('keypress', function (e) {
 function limparInput() {
     inputTexto.value = '';
     inputTexto.focus();
-    inputTitulo.value = '';
-    inputTitulo.focus();
 }
 
 //function "nome da funcção"(onde eu quero aparecer ) {}
@@ -73,14 +63,13 @@ function criaBotaoApagar(li) {
     li.innerText += ' ';
     botaoApagar.innerText = 'Apagar';
     botaoApagar.setAttribute('class', 'apagar');
-    botaoApagar.setAttribute('title', 'Apagar essa Tafera');
     li.appendChild(botaoApagar);
 }
 
 function criarLi() {
     const li = document.createElement('li');
     li.style.backgroundColor = 'gray'
-    li.style.color = 'white'    
+    li.style.color = 'white'
     li.style.margin = '10px 10px 10px 10px'
     li.style.padding = '30px'
     li.style.borderRadius = '10px'
@@ -90,11 +79,9 @@ function criarLi() {
 }
 
 
-function criaTarefa(textInput, tituloInput) {
+function criaTarefa(textInput) {
     const li = criarLi();
-    const tituloLi = document.createElement('h2'); // Criar um elemento de título
-    tituloLi.innerText = tituloInput; // Definir o texto do título
-    li.appendChild(tituloLi); // Adicionar o título ao li
+
 
     const textoLi = document.createElement('h2')
     textoLi.innerText = textInput;
@@ -108,19 +95,17 @@ function criaTarefa(textInput, tituloInput) {
 
 
 botao.addEventListener('click', function () {
-    if (!inputTexto.value || !inputTitulo.value) return;
-    criaTarefa(inputTexto.value, inputTitulo.value);
+    if (!inputTexto.value) return;
+    criaTarefa(inputTexto.value);
 });
 
 
 document.addEventListener('click', function (e) {
     const el = e.target;
-
     if (el.classList.contains('apagar')) {
         el.parentElement.remove();
         salvarTarefas();
     }
-    
 });
 
 
@@ -131,7 +116,6 @@ function salvarTarefas() {
     for (const lista of liTarefas) {
         let tarefaTexto = lista.innerText;
         tarefaTexto = tarefaTexto.replace('Apagar', '').trim('');
-        tarefaTexto = tarefaTexto.replace('[object HTMLInputElement]', '').trim();
         console.log(tarefaTexto);
         listaDeTarefas.push(tarefaTexto)
 
@@ -145,9 +129,9 @@ function adicionaTarefasSalvas() {
     const lista = localStorage.getItem('lista');
     const listaDeTarefas = JSON.parse(lista);
 
-    for(let lista of listaDeTarefas) {
-        criaTarefa(lista, inputTitulo);
-        
+    for (let lista of listaDeTarefas) {
+        criaTarefa(lista);
+
     }
 }
 
