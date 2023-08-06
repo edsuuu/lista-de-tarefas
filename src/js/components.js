@@ -136,6 +136,10 @@ fonte.innerHTML = `@import url('https://fonts.googleapis.com/css2?family=Open+Sa
     transition: .4s;
     color: white;
 }
+ul {
+    padding: 0px;
+}
+
 li {
     display: flex;
     justify-content: space-between;
@@ -143,19 +147,17 @@ li {
     align-items: center;
     background-color: gray;
     color: white;
-    margin:30px ; 
     border-radius: 10px;
     padding: 10px;
 }
 
 li button {
     border-radius: 10px;
-    margin: 10px auto 20px auto;
+    margin: 10px auto 10px auto;
     padding: 6px;
     font-family: Open Sans, sans-serif;
     borderRadius: 10px;
     cursor: pointer;
-
 }`;
 
 body.style.backgroundColor = 'rgb(17, 86, 102)';
@@ -165,7 +167,7 @@ container.style.display = 'flex';
 container.style.flexDirection = 'column';
 container.style.maxWidth = '740px';
 container.style.padding = '30px'
-container.style.margin = '10% auto 0px auto'
+container.style.margin = '5% auto 0px auto'
 container.style.borderRadius = '10px'
 
 conteudo.style.display = 'flex'
@@ -189,9 +191,3 @@ botao.style.padding = '10px';
 botao.style.fontFamily = 'Open Sans, sans-serif';
 botao.style.borderRadius = '10px';
 botao.style.cursor = 'pointer';
-
-inputTitulo.style.margin = '0px auto 20px auto';
-inputTitulo.style.width = '300px';
-inputTitulo.style.padding = '10px';
-inputTitulo.style.fontSize = '1.2em';
-inputTitulo.style.borderRadius = '10px';
