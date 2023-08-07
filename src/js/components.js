@@ -73,7 +73,6 @@ function criaTarefa(textInput) {
     const textoLi = document.createElement('h2')
     textoLi.innerText = textInput;
     li.appendChild(textoLi);
-
     lista.appendChild(li);
     limparInput();
     criaBotaoApagar(li);
@@ -84,7 +83,6 @@ botao.addEventListener('click', function () {
     if (!inputTexto.value) return;
     criaTarefa(inputTexto.value);
 });
-
 
 document.addEventListener('click', function (e) {
     const el = e.target;
@@ -103,7 +101,6 @@ function salvarTarefas() {
         tarefaTexto = tarefaTexto.replace('Apagar', '').trim('');
         console.log(tarefaTexto);
         listaDeTarefas.push(tarefaTexto)
-
     }
 
     const tarefasJSON = JSON.stringify(listaDeTarefas);
@@ -112,15 +109,11 @@ function salvarTarefas() {
 
 function adicionaTarefasSalvas() {
     const lista = localStorage.getItem('lista');
-
     const listaDeTarefas = JSON.parse(lista);
-
     for (let lista of listaDeTarefas) {
         criaTarefa(lista);
-
     }
 }
-
 adicionaTarefasSalvas();
 
 //estilos
